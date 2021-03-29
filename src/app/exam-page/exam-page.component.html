@@ -1,0 +1,77 @@
+<h1>Welcome to Exam Page</h1>
+
+
+
+<div>
+
+    <input type="button" (click)="getStart()" [disabled] = "strtBtn"  [value] = "strtTxt">
+    
+
+
+<div>
+
+
+
+    <form #myForm="ngForm" (ngSubmit)="submitForm(myForm.value)" novalidate>
+        <div>
+        <ul *ngFor="let qs of eachQuestonArray">
+            <li>
+                <h3>{{qs.question}}</h3>
+            </li>
+            <ol>
+                <li>
+                    <input type="radio" value={{qs.a}} name="answer" ngModel required>
+                    {{qs.a}}
+                
+                </li>
+             <li>
+                <input  type="radio" class="custom-control-input" value={{qs.b}} name="answer" ngModel required>
+                 {{qs.b}}
+             
+             </li>
+           <li>
+            <input  type="radio" class="custom-control-input" value={{qs.c}} name="answer" ngModel required>
+            {{qs.c}}
+         
+           </li>
+                
+           <li>
+            <input id="female" type="radio" class="custom-control-input" value={{qs.d}} name="answer" ngModel required>
+            {{qs.d}}
+           </li>          
+            </ol>
+        </ul>   
+          </div>
+        <input type="submit" [value]="nxt" [disabled]="!myForm.valid">
+     </form>
+
+
+
+</div>
+
+
+
+
+<div>
+    {{finalResultMSG}}
+    <ul *ngFor="let dt of outPutList">
+        <li> <h3>Question Missed:</h3> 
+            <h5>{{dt.question}}</h5> </li>
+        
+            <ul>
+                <li>
+                    <h3>You Answered</h3>
+                    <h5>{{dt.userAns}}</h5>  
+                    
+                </li>
+                <li>
+                    <h3>Correct Answer </h3>
+                    <h5>{{dt.correctAns}}</h5>
+                </li>
+            </ul>
+        </ul>
+    
+    <input type="button" [disabled]="submitLock"   [value] = "submitTxt"     (click)="submitAll()" > 
+</div>
+
+</div>
