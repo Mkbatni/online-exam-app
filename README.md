@@ -1,3 +1,12 @@
+Link To GitHub Repo:
+https://github.com/Mkbatni/online-exam-app.git
+
+main page: it is designed with a start button and the exam page Is protected with auth guard.
+Exam-Page: it is designed with a start button to show the first question, than the next button to navigate through the next questions until the last question which the submit button with disappear and by clicking the submit button, user can see the score and the questions that he or she missed with the correct answers with in red and green color.
+
+
+
+
 # OnlineTestApplication
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
