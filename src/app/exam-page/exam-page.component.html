@@ -1,22 +1,22 @@
-<h1>Welcome to Exam Page</h1>
+<div style="text-align: center;" class="p-3 mb-2 bg-dark text-white">
+    <h1 class="text-muted" >Welcome to Exam Page</h1>
+</div>
 
 
 
-<div>
 
-    <input type="button" (click)="getStart()" [disabled] = "strtBtn"  [value] = "strtTxt">
-    
+<div  style="padding :100px; background-color:darkgray;">
 
-
-<div>
+    <input  class="btn btn-secondary" style="border: hidden; background-color: darkgray;" type="button" (click)="getStart()" [disabled] = "strtBtn"  [value] = "strtTxt">
+<div >
 
 
 
-    <form #myForm="ngForm" (ngSubmit)="submitForm(myForm.value)" novalidate>
+    <form  style="padding-right :50px; background-color:darkgray;" #myForm="ngForm" (ngSubmit)="submitForm(myForm.value)" novalidate>
         <div>
-        <ul *ngFor="let qs of eachQuestonArray">
+        <ul class="text-lg-start"  *ngFor="let qs of eachQuestonArray">
             <li>
-                <h3>{{qs.question}}</h3>
+                <h2>{{qs.question}}</h2>
             </li>
             <ol>
                 <li>
@@ -42,7 +42,7 @@
             </ol>
         </ul>   
           </div>
-        <input type="submit" [value]="nxt" [disabled]="!myForm.valid">
+        <input class="btn btn-secondary" style="border: hidden; background-color:darkgrey;" type="submit" [value]="nxt" [disabled]="!myForm.valid">
      </form>
 
 
@@ -50,28 +50,28 @@
 </div>
 
 
+<hr>
 
-
-<div>
-    {{finalResultMSG}}
+<div style="padding :100px; background-color:darkgray;">
+   <h2>{{finalResultMSG}}</h2>
     <ul *ngFor="let dt of outPutList">
-        <li> <h3>Question Missed:</h3> 
+        <li> <h2>Question Missed:</h2> 
             <h5>{{dt.question}}</h5> </li>
         
             <ul>
                 <li>
                     <h3>You Answered</h3>
-                    <h5>{{dt.userAns}}</h5>  
+                    <h3>{{dt.userAns}}</h3>  
                     
                 </li>
                 <li>
-                    <h3>Correct Answer </h3>
-                    <h5>{{dt.correctAns}}</h5>
+                    <h4>Correct Answer </h4>
+                    <h4>{{dt.correctAns}}</h4>
                 </li>
             </ul>
         </ul>
     
-    <input type="button" [disabled]="submitLock"   [value] = "submitTxt"     (click)="submitAll()" > 
-</div>
+    <input class="btn btn-secondary" style="border: hidden; background-color: darkgray;"  type="button" [disabled]="submitLock"   [value] = "submitTxt"     (click)="submitAll()" > 
+</div> 
 
 </div>

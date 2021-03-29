@@ -21,20 +21,19 @@ export class ExamPageComponent implements OnInit {
 
   submitLock:boolean = true;
   nxt:string = ""
-  strtTxt:string = "Start"
+  strtTxt:string = "click here to Start"
   strtBtn:boolean = false;
   submitTxt:string = "";
   finalResultMSG:string = "";
+
+
   ngOnInit(): void {
   
     this.getValue();
    /*  this.serv.loadQuestion().subscribe(result => this.questionArray = result,error => console.log("error happend",error),
     ()=> console.log("completed")); */
   }
-
-
-
-getValue()
+  getValue()
   {
     this.serv.loadQuestion().subscribe(result => this.questionArray = result,error => console.log("error happend",error),
     ()=> console.log("completed"));
@@ -42,19 +41,13 @@ getValue()
 
   }
 
-
-
   getStart()
   {
-   /*  for (let index = 0; index < this.questionArray.length; index++) {
-      this.hasAllArray.push(this.questionArray[index])
-      
-    } */
-    
+
     this.hasAllArray = [...this.questionArray];
     this.eachQuestonArray.push(this.hasAllArray[0]);
-   this.nxt = "Next";
-   this.strtTxt = "";
+    this.nxt = "Next Question";
+    this.strtTxt = "";
 
   }
 
@@ -62,34 +55,30 @@ getValue()
   submitForm(ref:any)
   {
   
-if (this.cntr == this.hasAllArray.length - 1)
-{
-  this.nxt = "";
-  this.submitTxt = "Submit";
-  this.submitLock = false;
-return;
-}
+      if (this.cntr == this.hasAllArray.length - 1)
+      {
+      this.nxt = "";
+      this.submitTxt = "Submit";
+      this.submitLock = false;
+      return;
+      }
 
-  let tmp = ref.answer
-if(tmp != this.eachQuestonArray[0].correctAns)
-{
-  let obj= {
-    question : this.eachQuestonArray[0].question,
-    correctAns : this.eachQuestonArray[0].correctAns,
-    userAns : tmp
-  }
-     
-      this.outputArr.push(obj); 
-}
+      let tmp = ref.answer
+      if(tmp != this.eachQuestonArray[0].correctAns)
+      {
+      let obj= {
+        question : this.eachQuestonArray[0].question,
+        correctAns : this.eachQuestonArray[0].correctAns,
+        userAns : tmp
+      }
+          
+          this.outputArr.push(obj); 
+      }
 
-console.log(" it was a correct answer" + this.cntr +  "  : "+  this.hasAllArray.length);
-this.eachQuestonArray.pop();
+      console.log(" it was a correct answer" + this.cntr +  "  : "+  this.hasAllArray.length);
+      this.eachQuestonArray.pop();
 
-  this.eachQuestonArray.push(this.hasAllArray[++this.cntr]);
-
-
-  
-
+      this.eachQuestonArray.push(this.hasAllArray[++this.cntr]);
     
   }
 
@@ -97,22 +86,20 @@ this.eachQuestonArray.pop();
 outPutList:Array<any> = [];
   submitAll()
   {
-  //RESULT PASS 3/1O
-  let  tmpTotal:number = (1 -  this.outputArr.length / this.hasAllArray.length ) * 100 ;
+    //RESULT PASS 3/1O
+    let  tmpTotal:number = (1 -  this.outputArr.length / this.hasAllArray.length ) * 100 ;
 
-  if (tmpTotal >= 70)
-{
- 
-  this.finalResultMSG = "Congradulation you passed. your Score is: " + tmpTotal.toFixed(2) + "." + 
-  "\nYou missed: " +  this.outputArr.length + " out of " + this.hasAllArray.length + " Questions.";
-  
-}
-else{
-  this.finalResultMSG = "Sorry you failed the Test your SCore is: " + tmpTotal.toFixed(2)+ "." + 
-  "\nYou missed: " +  this.outputArr.length + " out of " + this.hasAllArray.length + " Questions.";
-}
-   this.outPutList = [...this.outputArr];
-  
+    if (tmpTotal >= 70)
+    {
+    this.finalResultMSG = "Congradulation you passed. Your Score is: " + tmpTotal.toFixed(2) + "." + 
+    "\nYou missed: " +  this.outputArr.length + " out of " + this.hasAllArray.length + " Questions.";
+    }
+    else{
+    this.finalResultMSG = "Sorry you failed.Your Score is: " + tmpTotal.toFixed(2)+ "." + 
+    "\nYou missed: " +  this.outputArr.length + " out of " + this.hasAllArray.length + " Questions.";
+    }
+      this.outPutList = [...this.outputArr];
+
   }
 
 
